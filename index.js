@@ -11,20 +11,60 @@ app.use(express.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
   res.send(`
-    <!DOCTYPE html>
-    <html>
-    <head>
-      <title>NYT beamer</title>
-    </head>
-    <body>
-      <h3>This looks sketchy and is of of dubious legality or moral justice, but I have no money to give to the New York Times</h3>
-      <form method="post" action="/render">
-        <label for="url">Enter Article URL:</label>
-        <input type="url" name="url" required>
-        <button type="submit">Render</button>
-      </form>
-    </body>
-    </html>
+  <!DOCTYPE html>
+<html>
+
+<head>
+    <title>NYT Beamer</title>
+    <!-- Add Bootstrap stylesheet -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Center align everything */
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+        }
+        .form-container {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        h4 {
+            font-size: 24px;
+            font-weight: normal;
+        }
+        .form-control {
+            text-align: center;
+        }
+        .form-text {
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="display-3">NYT Beamer</h1>
+        <h4 class="mb-3">This looks sketchy and is of dubious legality, but I have no money to give to the New York Times.</h4>
+        <div class="form-container">
+            <form method="post" action="/render">
+                <label for="url">Enter Article URL:</label>
+                <input type="url" class="form-control" name="url" required>
+                <small class="form-text text-muted mt-2">This tool scrapes articles from NYT's servers, removing the paywall and most ads, before redirecting you to a temporary URL to view the content. It's temporary, since it self destructs after some time, but it will still give you plenty of time to read the article with no rush.</small>
+                <button type="submit" class="btn btn-primary mt-2">Render</button>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
+
   `);
 });
 
